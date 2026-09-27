@@ -10,7 +10,6 @@
       "cacheVariables": {
         "CMAKE_CXX_COMPILER": "clang++",
         "CMAKE_CXX_COMPILER_LAUNCHER": "ccache",
-        "CMAKE_LINKER_TYPE": "MOLD",
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON"
       }
     },
