@@ -1,0 +1,26 @@
+// #include <inplace_vector>
+#include <CLI/CLI.hpp>
+#include <nlohmann/json.hpp>
+#include <print>
+#include <type_traits>
+
+template <typename... Ts> using first_t = Ts...[0]; // C++26 pack indexing
+
+void legacy_api() = delete ("use the new API instead"); // C++26 delete with reason
+
+auto main(int argc, char **argv) -> int {
+  CLI::App app{"myapp"};
+  int n = 1;
+  app.add_option("-n", n, "repeat count");
+  CLI11_PARSE(app, argc, argv);
+
+  static_assert(std::is_same_v<first_t<int, double>, int>);
+
+  std::vector<int> v{1, 2, 3}; // C++26 fixed-capacity vector
+
+  auto _ = 42; // C++26 placeholder variable
+  nlohmann::json j = {{"values", v}};
+  for (int i = 0; i < n; ++i) {
+    std::println("{}", j.dump());
+  }
+}
